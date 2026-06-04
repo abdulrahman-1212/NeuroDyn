@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="assets/neurodyn_logo.png" width="300">
+</p>
+
+
 # NeuroDyn
 
 **High-Performance Neural Dynamics for Scientific Machine Learning**
