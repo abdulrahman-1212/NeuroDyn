@@ -1,46 +1,62 @@
-<p align="center">
-  <img src="assets/neurodyn_logo.png" width="300">
-</p>
-
-<h1 align="center">NeuroDyn</h1>
-
-<p align="center">
-Physics-Informed • Hybrid • Intelligent
-</p>
-
 # NeuroDyn
 
-**Neural Dynamics for Scientific Discovery**
+**High-Performance Neural Dynamics for Scientific Machine Learning**
 
-[![PyPI version](https://img.shields.io/pypi/v/neurodyn.svg)](https://pypi.org/project/neurodyn/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/neurodyn)](https://pypi.org/project/neurodyn/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/yourusername/neurodyn.svg)](https://github.com/yourusername/neurodyn)
-[![CI Status](https://github.com/yourusername/neurodyn/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/neurodyn/actions)
-[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://neurodyn.readthedocs.io)
+[![CUDA](https://img.shields.io/badge/CUDA-Accelerated-76B900.svg)](https://pytorch.org/cppdocs/)
+[![C++20](https://img.shields.io/badge/C++-20-blue.svg)]()
 
-NeuroDyn is a modern Python library that makes **Scientific Machine Learning** more powerful and accessible — with a strong focus on neural networks for dynamical systems, physics-informed modeling, and reliable scientific discovery.
+NeuroDyn is a **high-performance library** for Scientific Machine Learning with a strong focus on **dynamical systems**, physics-informed modeling, and reliability.
+
+### Current MVP (v0.1)
+- **CUDA-accelerated C++ core** powered by **LibTorch**
+- High-performance tensor operations and automatic differentiation
+- Core utilities for scientific ML (collocation, residuals, metrics)
+- Scientific visualization tools
+- Python bindings via pybind11
 
 ---
 
-## ✨ Key Features
+## ✨ MVP Features
 
-- **Physics-Informed Neural Networks (PINNs)** with improved stability and convergence
-- **Neural Differential Equations** (NeuralODEs, NeuralSDEs, etc.)
-- **Hybrid Modeling**: Combine deep learning with scientific simulators and governing equations
-- **Uncertainty Quantification** tailored for scientific applications
-- **Physics-Constrained Training** and automatic residual computation
-- **Multi-fidelity Learning** and surrogate modeling
-- **Seamless integration** with PyTorch, JAX, and the SciPy ecosystem
-- **Built for domain scientists** in physics, engineering, biology, climate, and chemistry
+- **CUDA-Accelerated Core** using LibTorch (C++ backend)
+- High-order automatic differentiation for PINN-style residuals
+- Efficient collocation point sampling and grid generation
+- Physics-aware tensor utilities and loss computation
+- Scientific visualization module (field plots, phase space, residuals)
+- Clean Python API with zero-copy tensor conversion
+- Modular architecture designed for performance and extensibility
 
 ---
 
 ## Installation
 
-```bash
-# Stable release
-pip install NeuroDyn
+### Prerequisites
+- CUDA Toolkit (12.6 or 13.x recommended)
+- CMake ≥ 3.20
+- Python ≥ 3.10
 
-# Development version (recommended for now)
-pip install git+https://github.com/abdulrahman-1212/NeuroDyn.git
+### Build from Source
+
+```bash
+git clone https://github.com/yourusername/neurodyn.git
+cd neurodyn
+
+# Download LibTorch CUDA into externals/
+mkdir -p externals
+cd externals
+wget https://download.pytorch.org/libtorch/cu126/libtorch-shared-with-deps-latest.zip
+unzip libtorch-shared-with-deps-latest.zip -d libtorch
+cd ..
+
+# Build the project
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+         -DTORCH_DIR=../externals/libtorch \
+         -DCMAKE_PREFIX_PATH=../externals/libtorch
+make -j$(nproc)
+
+# Install Python package
+cd ..
+pip install -e .
