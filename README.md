@@ -1,3 +1,13 @@
+<p align="center">
+  <img src="assets/neurodyn_logo.png" width="300">
+</p>
+
+<h1 align="center">NeuroDyn</h1>
+
+<p align="center">
+Physics-Informed • Hybrid • Intelligent
+</p>
+
 # NeuroDyn
 
 **Neural Dynamics for Scientific Discovery**
